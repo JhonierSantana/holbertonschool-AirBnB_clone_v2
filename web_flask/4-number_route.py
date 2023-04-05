@@ -29,6 +29,7 @@ def index_4(text='is cool'):
 
 @app.route('/number/<int:n>', strict_slashes=False)
 def index_4(n):
+    ''' Prints on number if n is int '''
     return "{} is number".format(n)
 
 
