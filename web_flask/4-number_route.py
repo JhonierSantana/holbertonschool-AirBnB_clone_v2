@@ -2,7 +2,6 @@
 ''' Star flask'''
 
 from flask import Flask
-'''Module'''
 app = Flask(__name__)
 
 
@@ -24,15 +23,16 @@ def index_3(text):
     return "C {}".format(text).replace('_', ' ')
 
 
-@app.route('/python', strict_slashes=False)
-@app.route('/python/<text>', strict_slashes=False)
+@app.route("/python/", strict_slashes=False)
+@app.route("/python/<text>", strict_slashes=False)
 def index_4(text='is cool'):
-     '''Prints on /python/anything'''
-    return "Python {}".format(text).replace('_', ' ')
+    '''Fourth function. Prints on /python/anything'''
+    text = text.replace("_", " ")
+    return "Python {}".format(text)
 
 
 @app.route('/number/<int:n>', strict_slashes=False)
-def index_4(n):
+def index_5(n):
     '''Prints on number if n is int'''
     return "{} is number".format(n)
 
