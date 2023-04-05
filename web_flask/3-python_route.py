@@ -22,8 +22,7 @@ def index_3(text):
 
 
 @app.route('/python/<text>', strict_slashes=False)
-def index_4(text):
-    text = "is cool"
+def index_4(text='is cool'):
     return "Python {}".format(text).replace('_', ' ')
 
 
