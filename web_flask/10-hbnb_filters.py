@@ -5,7 +5,10 @@
 from flask import Flask, render_template
 from models import storage
 from models.state import State
+from models.amenity import Amenity
+from os import getenv
 app = Flask(__name__)
+env = getenv('HBNB_TYPE_STORAGE')
 
 
 @app.teardown_appcontext
@@ -14,14 +17,12 @@ def teardown_close(self):
     storage.close()
 
 
-@app.route('/states_list', strict_slashes=False)
-def states_list():
+@app.route('/hbnb_filters', strict_slashes=False)
+def hbnb_filters():
     """Returns a HTML with states list"""
-    state_dict = storage.all(State)
-    ret_list = []
-    for state in state_dict.values():
-        ret_list.append(state)
-    return render_template('7-states_list.html', st_list=ret_list)
+    state_list = storage.all(State).values()
+    amenities_list = storage.all(Amenity).values()
+    return render_template('10-hbnb_filters.html', st_list=state_list, amnt_list=amenities_list)
 
 
 if __name__ == "__main__":
